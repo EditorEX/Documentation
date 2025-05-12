@@ -7,8 +7,7 @@ const withNextra = nextra({
 
 export default withNextra({
     // ... Other Next.js config options
-    output: 'export',
-    basePath: '/Documentation',
-    assetPrefix: '/Documentation',
+    output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
+    basePath: process.env.NODE_ENV === 'production' ? '/Documentation' : '',
     'images.unoptimized': true
 });

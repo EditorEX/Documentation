@@ -8,6 +8,6 @@ const withNextra = nextra({
 export default withNextra({
     // ... Other Next.js config options
     output: 'export',
-    basePath: '/out',
+    basePath: '/Documentation',
     'images.unoptimized': true
 });

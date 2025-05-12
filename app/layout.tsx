@@ -22,7 +22,7 @@ export default async function RootLayout({children}) {
             suppressHydrationWarning
         >
         <Head>
-            <link rel="shortcut icon" href="/images/general/icon.svg"/>
+            <link rel="shortcut icon" href={`${config.basePath}/images/general/icon.svg`}/>
         </Head>
         <body>
         <Layout

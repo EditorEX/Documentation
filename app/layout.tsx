@@ -9,7 +9,7 @@ export const metadata = {
 
 const navbar = (
     <Navbar
-        logo={<img src="images/general/logo.svg" alt="Logo" width={100} height={20}/>}
+        logo={<img src="/images/general/logo.svg" alt="Logo" width={100} height={20}/>}
     />
 )
 export default async function RootLayout({children}) {
@@ -20,7 +20,7 @@ export default async function RootLayout({children}) {
             suppressHydrationWarning
         >
         <Head>
-            <link rel="shortcut icon" href="images/general/icon.svg"/>
+            <link rel="shortcut icon" href="/images/general/icon.svg"/>
         </Head>
         <body>
         <Layout

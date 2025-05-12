@@ -19,7 +19,7 @@ class MyModSettingsViewContent : IViewContent<SettingsViewData>
         return new Layout() {
             Children = {
                 new EditorImage() {
-                    Source = "https://picsum.photos/300"
+                    Source = "https://picsum.photos/300" //Source is based on BSML resource locations, can be assembly embedded or a URL. Animated gifs are not supported in the editor.
                 } 
             }
         }.AsFlexGroup(FlexDirection.Column);
@@ -59,4 +59,4 @@ public class MyModViewControllersInstaller : Installer
 ### Step 3: Check In-game
 - You should now see your settings page in the settings menu of the editor.
 
-![image](images/general/settings.png)
+![image](/images/general/settings.png)

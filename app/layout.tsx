@@ -3,13 +3,14 @@ import {Banner, Head} from 'nextra/components'
 import {getPageMap} from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
 }
 
 const navbar = (
     <Navbar
-        logo={<img src="/images/general/logo.svg" alt="Logo" width={100} height={20}/>}
+        logo={<Image src="/images/general/logo.svg" alt="Logo" width={100} height={20}/>}
     />
 )
 export default async function RootLayout({children}) {

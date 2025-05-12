@@ -9,5 +9,6 @@ export default withNextra({
     // ... Other Next.js config options
     output: 'export',
     basePath: '/Documentation',
+    assetPrefix: '/Documentation',
     'images.unoptimized': true
 });

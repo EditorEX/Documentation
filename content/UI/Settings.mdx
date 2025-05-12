@@ -1,0 +1,62 @@
+# Settings
+Use this guide make a settings page using the EditorEX SDK.
+
+## Prerequisites
+- A ViewControllers Installer for your mod
+
+
+## Step 1: Create a Settings ViewContent
+- Create a class implementing `IViewContent<SettingsViewData>`
+- The `Create` method should return a `ReactiveComponent` from [ReactiveUI](https://github.com/reactive-platform).
+
+```cs
+//SettingsViewData tells EditorEX that this ViewContent is a settings page.
+class MyModSettingsViewContent : IViewContent<SettingsViewData>
+{
+    public ReactiveComponent Create()
+    {
+        //Add your UI here, this is just an example.
+        return new Layout() {
+            Children = {
+                new EditorImage() {
+                    Source = "https://picsum.photos/300"
+                } 
+            }
+        }.AsFlexGroup(FlexDirection.Column);
+    }
+
+    public SettingsViewData GetViewData()
+    {
+        //This is metadata that will be passed depending on where the viewcontent is used. For setting pages, this is just the mod name.
+        return new SettingsViewData("Mod Name Here");
+    }
+
+    public void OnEnable()
+    {
+        //Called when the view is enabled
+    }
+
+    public void OnHide()
+    {
+        //Called when the view is hidden
+    }
+}
+```
+
+### Step 2: Bind your ViewContent
+
+```cs
+public class MyModViewControllersInstaller : Installer
+{
+    public override void InstallBindings()
+    {
+        Container.Bind<IViewContent<SettingsViewData>>().FromInstance(new MyModSettingsViewContent());
+    }
+}
+```
+
+
+### Step 3: Check In-game
+- You should now see your settings page in the settings menu of the editor.
+
+![image](/images/general/settings.png)

@@ -1,5 +1,6 @@
 import nextra from "nextra";
 
+console.log("NODE_ENV:", process.env.NODE_ENV);
 const withNextra = nextra({
     search: process.env.NODE_ENV === 'production',
     defaultShowCopyCode: true,

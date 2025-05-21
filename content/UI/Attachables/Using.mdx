@@ -1,0 +1,21 @@
+# Using Reactive Attachables
+
+## What are they for?
+Attachables are simply a way to attach post-initialization initialization to components in a way that applies generically to different types of components.
+For example:
+```cs
+new Layout() {
+    Children = {
+        new EditorImage() {
+            Source = "https://picsum.photos/300"
+        }
+        .Attach<ColorSOAttachable>("Button/Background/Normal"),
+        new EditorLabel() {
+            Text = "Hello, World!"
+        }
+        .Attach<FontAttachable>()
+        .Attach<ColorSOAttachable>("Button/Text/Normal")
+    }
+};
+```
+Both images and colors can have a `ColorSO` made available to them, so we can use the same attachable for both. This allows us to create a generic attachable that can be used for any component that has a `ColorSO` property.

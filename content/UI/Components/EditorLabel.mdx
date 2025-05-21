@@ -1,0 +1,14 @@
+# EditorLabel
+The EditorLabel component is the basic text component in the EditorEX SDK. It displays text with the editor's font and color settings. It can be combined with [Attachables](./Attachables/Using.mdx) to customize the color.
+
+```cs
+new EditorLabel()
+{
+    Text = "Hello, World!",
+    FontSize = 18f,
+    Alignment = TextAlignmentOptions.Left,
+}
+.Attach<ColorSOAttachable>("Input/Text/Normal")
+.Export(out var _text)
+.AsFlexItem()
+```

@@ -1,0 +1,54 @@
+# Creating an Attachable
+For an explanation of what an attachable is, see [Using Reactive Attachables](./Using.mdx).
+
+## Making an Attachable Interface
+
+The Attachable Implementation needs an interface to set values with. This can be as simple as:
+```cs
+public interface IColorSOAttachable
+{
+    public ColorSO ColorSO
+    {
+        get;
+        set;
+    }
+}
+```
+This interface is implemented by any component able to recieve this Attachable.
+
+## Making an Attachable Implementation
+
+1. Create a class that implements `IAttachable<T>` where `T` is the type of the parameter. For example, `public class ColorSOAttachable : IAttachable<string>`. If you don't need a parameter then just use `IAttachable`.
+2. Implement the `Attach` method. This method will be called when the attachable is applied to a component, specifically on `OnStart`. You can use this method to set the value of the property on the component.
+3. Implement the `SetValue` method (If you have a parameter). This will be called immediately after the Attachable is created and will be passed the parameter.
+
+For example:
+```cs
+public class ColorSOAttachable : IAttachable<string>
+{
+    public virtual string ColorSource
+    {
+        get => _colorSource;
+        set
+        {
+            _colorSource = value;
+        }
+    }
+
+    private string _colorSource = string.Empty;
+
+    public void SetValue(string value)
+    {
+        ColorSource = value;
+    }
+
+    public void Attach(ReactiveComponent component)
+    {
+        if (component is IColorSOAttachable colorSOAttachable)
+        {
+            var container = component.Content.transform.GetComponentInParent<ReactiveContainerHolder>().ReactiveContainer;
+            colorSOAttachable.ColorSO = container.ColorCollector.GetColor(ColorSource);
+        }
+    }
+}
+```

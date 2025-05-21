@@ -1,0 +1,41 @@
+# Integrating an Attachable with a Component
+For an explanation of what an attachable is, see [Using Reactive Attachables](./Using.mdx).
+
+## Integrating
+To allow Attachables to be used with your component, you need to implement the interface in your component. This is done by implementing the Attachable's interface in your component class and adding the `AttachableReactiveComponent` base class.
+For example:
+```cs
+public class MyEditorComponent : AttachableReactiveComponent<MyEditorComponent>, IFontAttachable, IColorSOAttachable
+{
+    public TMP_FontAsset Font
+    {
+        get => _font;
+        set
+        {
+            _font = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public Material Material
+    {
+        get => _material;
+        set
+        {
+            _material = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public ColorSO ColorSO
+    {
+        get => _colorSo;
+        set
+        {
+            _colorSo = value;
+            NotifyPropertyChanged();
+        }
+    }
+}
+```
+This allows the component to be used with the `FontAttachable` and `ColorSOAttachable` interfaces. The `AttachableReactiveComponent` base class will handle the attaching of the attachables to the component. Ensure that if you override the `OnStart` method, you call `base.OnStart()` to ensure that the attachables are applied correctly.
